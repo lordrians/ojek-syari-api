@@ -17,16 +17,16 @@ jobs:
         run: |
           cat >~/.netrc <<EOF
           machine api.heroku.com
-              login "${{secrets.HEROKU_EMAIL}}"
+              login ${{secrets.HEROKU_EMAIL}}
               password "${{secrets.HEROKU_API_KEY}}"
           machine git.heroku.com
-              login "${{secrets.HEROKU_EMAIL}}"
+              login ${{secrets.HEROKU_EMAIL}}
               password "${{secrets.HEROKU_API_KEY}}"
           EOF
       - name: Add heroku remote
         run: heroku git:remote --app=${{secrets.HEROKU_APP_NAME}}
       - name: Setup heroku env
-        run: heroku config:set DATABASE_URL=mongodb+srv://lordrians:mongoDb*()890@cluster0.4iodyi8.mongodb.net/?retryWrites=true&w=majority
+        run: heroku config:set DATABASE_URL=${{secrets.DATABASE_URL}}
       - name: push heroku to master
         run: |
           git fetch --unshallow origin
