@@ -12,16 +12,16 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
       - name: Create heroku config gile
         run: |
           cat >~/.netrc <<EOF
           machine api.heroku.com
               login ${{secrets.HEROKU_EMAIL}}
-              password "${{secrets.HEROKU_API_KEY}}"
+              password ${{secrets.HEROKU_API_KEY}}
           machine git.heroku.com
               login ${{secrets.HEROKU_EMAIL}}
-              password "${{secrets.HEROKU_API_KEY}}"
+              password ${{secrets.HEROKU_API_KEY}}
           EOF
       - name: Add heroku remote
         run: heroku git:remote --app=${{secrets.HEROKU_APP_NAME}}
