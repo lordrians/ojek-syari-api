@@ -28,7 +28,7 @@ jobs:
       - name: Setup heroku env
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
-          run: echo "${{env.DATABASE_URL}}"
+        run: echo "The API key is:${{env.DATABASE_URL}}"
       - name: push heroku to master
         run: |
           git fetch --unshallow origin
