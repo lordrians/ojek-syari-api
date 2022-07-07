@@ -18,8 +18,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Setup Env
-        run: export DATABASE_URL="${{secrets.DATABASE_URL}}"
+      - name: Access DATABASE
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+        run: echo DATABASE_URL=\"$DATABASE_URL\" > ./local.properties
       - name: Create heroku config gile
         run: |
           cat >~/.netrc <<EOF
