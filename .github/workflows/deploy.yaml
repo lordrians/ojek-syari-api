@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master ]
 
+
+env:
+  DATABASE_URL: ${{secrets.DATABASE_URL}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,9 +30,7 @@ jobs:
       - name: Add heroku remote
         run: heroku git:remote --app=${{secrets.HEROKU_APP_NAME}}
       - name: Setup heroku env
-        env:
-          DATABASE_URL: ${{secrets.DATABASE_URL}}
-        run: echo "The API key is:${{env.DATABASE_URL}}"
+        run: heroku config:set DATABASE_URL=${{secrets.DATABASE_URL}}
       - name: push heroku to master
         run: |
           git fetch --unshallow origin
