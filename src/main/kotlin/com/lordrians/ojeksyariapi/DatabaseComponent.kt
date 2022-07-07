@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class DatabaseComponent {
 
-    private val databaseURL = System.getenv("DATABASE_URL")
+    private val databaseURL = "mongodb+srv://lordrians:mongoDb*()890@cluster0.4iodyi8.mongodb.net/?retryWrites=true&w=majority"
     val database: MongoClient = KMongo.createClient(databaseURL)
 
 }
